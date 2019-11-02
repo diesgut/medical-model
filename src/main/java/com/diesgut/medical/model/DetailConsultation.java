@@ -1,5 +1,8 @@
 package com.diesgut.medical.model;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,12 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "detail_consultation")
-public class DetailConsultation {
+public class DetailConsultation implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Long id;
 
 	@Column(name = "diagnostic")
 	private String diagnostic;
@@ -32,11 +35,11 @@ public class DetailConsultation {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -62,6 +65,23 @@ public class DetailConsultation {
 
 	public void setMedicalConsultation(MedicalConsultation medicalConsultation) {
 		this.medicalConsultation = medicalConsultation;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof DetailConsultation)) {
+			return false;
+		}
+		DetailConsultation other = (DetailConsultation) obj;
+		return Objects.equals(this.getId(), other.getId());
 	}
 
 }

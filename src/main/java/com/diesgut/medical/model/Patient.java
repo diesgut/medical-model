@@ -37,6 +37,10 @@ public class Patient implements Serializable {
 	public Patient() {
 	}
 
+	public Patient(Long idPatient) {
+		this.id = idPatient;
+	}
+
 	public Long getId() {
 		return id;
 	}
