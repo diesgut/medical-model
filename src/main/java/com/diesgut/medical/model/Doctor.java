@@ -88,4 +88,9 @@ public class Doctor implements Serializable {
 		this.speciality = speciality;
 	}
 
+	public String getFullName() {
+		String completo = this.getFirstName() + ", " + this.getLastName();
+		return completo;
+	}
+
 }

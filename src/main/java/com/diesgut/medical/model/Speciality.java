@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "speciality")
 public class Speciality implements Serializable {
@@ -23,10 +25,15 @@ public class Speciality implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "speciality", fetch = FetchType.LAZY)
 	private List<Doctor> doctors;
 
 	public Speciality() {
+	}
+
+	public Speciality(Long idDpeciality) {
+		this.id = idDpeciality;
 	}
 
 	public Long getId() {

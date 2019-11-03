@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 @Entity
 @Table(name = "medical_consultation")
 public class MedicalConsultation implements Serializable {
@@ -33,6 +36,7 @@ public class MedicalConsultation implements Serializable {
 	@JoinColumn(name = "doctor_id")
 	private Doctor doctor;
 
+	@JsonSerialize(using = ToStringSerializer.class)
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 

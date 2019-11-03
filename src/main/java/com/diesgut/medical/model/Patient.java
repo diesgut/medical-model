@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "patient")
 public class Patient implements Serializable {
@@ -31,6 +33,7 @@ public class Patient implements Serializable {
 	@Column(name = "number_clinical_history")
 	private String numberClinicalHistory;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "patient")
 	private List<MedicalConsultation> medicalsConsultations;
 
@@ -87,6 +90,11 @@ public class Patient implements Serializable {
 
 	public void setMedicalsConsultations(List<MedicalConsultation> medicalsConsultations) {
 		this.medicalsConsultations = medicalsConsultations;
+	}
+
+	public String getFullName() {
+		String completo = this.getFirstName() + ", " + this.getLastName();
+		return completo;
 	}
 
 }
